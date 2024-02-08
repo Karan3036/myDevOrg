@@ -22,10 +22,10 @@ public class XMLFeedGenerator {
 
                 // Check for null before adding text node
                 if (fieldValue != null) {
-                    recordNode.addChildElement(fieldName, null, null).addTextNode(String.valueOf(fieldValue));
+                    recordNode.addChildElement(fieldName, null, null).addTextNode('![CDATA['+String.valueOf(fieldValue)+']]');
                 } else {
                     // Handle null values as needed
-                    recordNode.addChildElement(fieldName, null, null).addTextNode('NULL');
+                    recordNode.addChildElement(fieldName, null, null).addTextNode('![CDATA[NULL]]');
                 }
             }
         }
@@ -74,4 +74,42 @@ public class XMLFeedGenerator {
 
         return query;
     }
+
+    // Properties
+    //     Property
+    //         Property_Ref_No
+    //         Property_purpose
+    //         Property_Type
+    //         Property_Status
+    //         City
+    //         Locality
+    //         Sub_Locality
+    //         Tower_Name
+    //         Property_Title
+    //         Property_Title_AR
+    //         Property_Description
+    //         Property_Description_AR
+    //         Property_Size
+    //         Property_Size_Unit
+    //         Bedrooms
+    //         Bathroom
+    //         Price
+    //         Listing_Agent
+    //         Listing_Agent_Phone
+    //         Listing_Agent_Email
+    //         Features
+    //             Feature
+    //         Images
+    //             Image
+    //         Videos  
+    //             Video  
+    //         Floor_Plans
+    //             Floor_Plan
+    //         Last_Updated   
+    //         Permit_Number
+    //         Rent_Frequency 
+    //         Off_Plan
+    //         Furnished
+    //         Portals
+    //             Portal
 }
