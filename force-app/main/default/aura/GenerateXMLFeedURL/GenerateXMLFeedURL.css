@@ -35,6 +35,8 @@
     border: 1px solid #ddd;
     border-radius: 10px;
     display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .THIS .copy-text input.text {
@@ -48,7 +50,7 @@
 
 .THIS .copy-text button {
     padding: 10px;
-    background: #5784f5;
+    background: #3174d1;
     color: #fff;
     font-size: 18px;
     border: none;
