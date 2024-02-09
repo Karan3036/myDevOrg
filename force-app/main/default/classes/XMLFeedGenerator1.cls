@@ -16,15 +16,40 @@ public class XMLFeedGenerator {
 
         for (SObject record : records) {
             dom.XmlNode propertyNode = rootNode.addChildElement('Property', null, null);
-            //dom.XmlNode fieldNodes = propertyNode.addChildElement('Features', null, null);
             
             for (String fieldName : fieldNames) {
-                Object fieldValue = record.get(fieldName);
-
-                // Check for null before adding text node
-                if (fieldValue != null) {
-                    dom.XmlNode fieldNode = propertyNode.addChildElement(fieldName, null, null);
-                    fieldNode.addTextNode('<![CDATA[ ' + String.valueOf(fieldValue) + ' ]]>');
+                if(fieldName != 'Feature_1__c' && 
+                   fieldName != 'Feature_2__c' && 
+                   fieldName != 'Feature_3__c' && 
+                   fieldName != 'Feature_4__c' && 
+                   fieldName != 'Feature_5__c' && 
+                   fieldName != 'Feature_6__c'){
+                    Object fieldValue = record.get(fieldName);
+    
+                    // Check for null before adding text node
+                    if (fieldValue != null) {
+                        dom.XmlNode fieldNode = propertyNode.addChildElement(fieldName, null, null);
+                        fieldNode.addTextNode('<![CDATA[ ' + String.valueOf(fieldValue) + ' ]]>');
+                    }
+                }
+            }
+            
+            dom.XmlNode feature = propertyNode.addChildElement('Features', null, null);
+            
+            for (String fieldName : fieldNames) {
+                if(fieldName == 'Feature_1__c' || 
+                   fieldName == 'Feature_2__c' || 
+                   fieldName == 'Feature_3__c' || 
+                   fieldName == 'Feature_4__c' || 
+                   fieldName == 'Feature_5__c' || 
+                   fieldName == 'Feature_6__c'){
+                    Object fieldValue = record.get(fieldName);
+    
+                    // Check for null before adding text node
+                    if (fieldValue != null) {
+                        dom.XmlNode fieldNode = feature.addChildElement(fieldName, null, null);
+                        fieldNode.addTextNode('<![CDATA[ ' + String.valueOf(fieldValue) + ' ]]>');
+                    }
                 }
             }
             
@@ -105,10 +130,15 @@ public class XMLFeedGenerator {
         input = input.replace('Bedrooms_hz__c', 'Bedrooms');
         input = input.replace('FullBathrooms_hz__c', 'Bathroom');
         input = input.replace('ListingPrice_hz__c', 'Price');
-        input = input.replace('ListingAgentName__c', 'Listing_Agent');
+        input = input.replace('ListingAgentProperty_Title__c', 'Listing_Agent');
         input = input.replace('Listing_Agent_Phone__c', 'Listing_Agent_Phone');
         input = input.replace('Listing_Agent_Email__c', 'Listing_Agent_Email');
         input = input.replace('Feature_1__c', 'Feature');
+        input = input.replace('Feature_2__c', 'Feature');
+        input = input.replace('Feature_3__c', 'Feature');
+        input = input.replace('Feature_4__c', 'Feature');
+        input = input.replace('Feature_5__c', 'Feature');
+        input = input.replace('Feature_6__c', 'Feature');
         input = input.replace('RERA_Permit_Number__c', 'Permit_Number');
         input = input.replace('Rent_Frequency__c', 'Rent_Frequency');
         input = input.replace('Furnished__c', 'Furnished');
